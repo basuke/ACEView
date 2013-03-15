@@ -214,4 +214,6 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 - (void) gotoLine:(NSInteger)lineNumber column:(NSInteger)columnNumber animated:(BOOL)animate;
 
+- (NSDictionary *) cursorPosition;
+
 @end

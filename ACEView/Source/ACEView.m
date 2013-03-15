@@ -265,4 +265,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.gotoLine(%ld, %ld, %@);", lineNumber, columnNumber, ACEStringFromBool(animate)]];
 }
 
+- (NSDictionary *) cursorPosition {
+    NSString *pos = [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"(function(){var p=editor.getCursorPosition();return [p.row,p.column].join('/')})()"];
+	NSArray *components = [pos componentsSeparatedByString:@"/"];
+	NSInteger row = [components[0] integerValue], column = [components[1] integerValue];
+	
+	return @{@"row":@(row), @"column":@(column)};
+}
+
 @end
